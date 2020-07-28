@@ -17,4 +17,9 @@ public class Character : MonoBehaviour
         animator.SetFloat(trigerName, trigerValue);
     }
 
+    public void SetAnimatorTriger(string trigerName, Vector2 direction)
+    {
+        animator.SetFloat(trigerName, direction.normalized.magnitude);
+    }
+
 }
