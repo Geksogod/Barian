@@ -50,6 +50,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private bool grounded;
+    public delegate void OnMoving(Vector3 newPosition);
+    public OnMoving onMoving;
 
     private void Awake()
     {
@@ -88,6 +90,8 @@ public class CharacterMovement : MonoBehaviour
             direction.x += Input.GetKey(KeyCode.D) ? movementSpeed * SpeedIncreaseCoefficient * Time.fixedDeltaTime : -1 * movementSpeed * SpeedIncreaseCoefficient * Time.fixedDeltaTime;
             isRotated = Input.GetKey(KeyCode.D) ? true : false;
         }
+        //if (!Vector2.Equals(Vector2.zero, direction))
+           // onMoving(transform.position);
         rb2D.AddForce(direction);
         if (Vector2.Equals(direction, Vector2.zero) && rb2D.velocity.magnitude > 0.4f)
             StopMoving();
